@@ -27,7 +27,7 @@ export function ProductTableWithSearch({ products }: { products: ProductRow[] })
       )
     })
   }, [products, search])
-
+  console.log("Filtered products:", products  )
   return (
     <div className="flex flex-1 flex-col">
       <div className="@container/main flex flex-1 flex-col mx-4 lg:mx-7 gap-2">

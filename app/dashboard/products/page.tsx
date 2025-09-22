@@ -32,7 +32,7 @@ async function getProducts() {
 
 export default async function Page() {
   const products = await getProducts()
-
+  console.log("Products fetched:", products  )
   // Client-side search state and filter
   // This wrapper is needed because Next.js server components can't use state directly
   return (
