@@ -1,4 +1,6 @@
 // app/(dashboard)/dashboard/orders/page.tsx
+export const dynamic = 'force-dynamic';
+import { unstable_noStore as noStore } from 'next/cache';
 import { AppSidebar } from "@/components/app-sidebar"
 import { SiteHeader } from "@/components/site-header"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
@@ -12,6 +14,7 @@ import type { OrderRow } from "@/components/orders-table"
 
 // Server-safe fetch of minimal fields for the table
 async function getOrders(): Promise<OrderRow[]> {
+  noStore()
   const qRef = query(collection(db, "orders"))
   const snap = await getDocs(qRef)
 

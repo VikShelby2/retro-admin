@@ -1,4 +1,6 @@
 // app/(dashboard)/dashboard/collections/page.tsx
+export const dynamic = 'force-dynamic';
+import { unstable_noStore as noStore } from 'next/cache';
 import type React from "react"
 import { AppSidebar } from "@/components/app-sidebar"
 import { SiteHeader } from "@/components/site-header"
@@ -11,6 +13,7 @@ import { CollectionTableWithSearch } from "@/components/collections-data-table"
 import type { CollectionRow } from "@/components/collections-table"
 
 async function getCollections(): Promise<CollectionRow[]> {
+  noStore()
   const q = query(collection(db, "collections"))
   const snapshot = await getDocs(q)
 
