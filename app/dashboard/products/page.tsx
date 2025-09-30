@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { AppSidebar } from "@/components/app-sidebar"
 import { SiteHeader } from "@/components/site-header"
 import {
@@ -9,10 +10,12 @@ import { collection, getDocs, query } from "firebase/firestore"
 import { DataTable, ProductRow } from "@/components/data-table"
 
 import { ProductTableWithSearch } from "@/components/products-data-table"
-
+import { unstable_noStore as noStore } from 'next/cache';
 async function getProducts() {
+  noStore(); 
   const q = query(collection(db, "products"));
   const snapshot = await getDocs(q);
+
 
   // Map to serializable, minimal fields the table expects
   const rows: ProductRow[] = snapshot.docs.map((doc) => {
