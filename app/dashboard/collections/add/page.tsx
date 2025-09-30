@@ -38,7 +38,7 @@ import {
 } from "@/components/ui/dialog";
 
 import { db, storage } from "@/lib/firebase";
-import { addDoc, collection, getDocs, query, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, orderBy, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 type Uploaded = { url: string; key: string };
@@ -96,8 +96,8 @@ export default function CollectionAddPage() {
     let mounted = true;
     (async () => {
       try {
-        const q = query(collection(db, "products"));
-        const snap = await getDocs(q);
+  const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
+  const snap = await getDocs(q);
         if (!mounted) return;
 
         const list: ProductLite[] = snap.docs.map((doc) => {

@@ -124,6 +124,8 @@ function parseSizes(input: string): string[] {
       const sizesArray = parseSizes(form.sizes)
       const placeholder = "/placeholder.svg?height=400&width=300"
 
+
+      const { serverTimestamp } = await import("firebase/firestore")
       const product = {
         name: form.name,
         stock: form.stock,
@@ -144,6 +146,7 @@ function parseSizes(input: string): string[] {
         rating: 4,
         reviews: 0,
         description: form.description,
+        createdAt: serverTimestamp(),
       }
 
       await addDoc(collection(db, "products"), product)
