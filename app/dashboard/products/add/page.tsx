@@ -130,7 +130,7 @@ function parseSizes(input: string): string[] {
         price: `${form.price}`,
         images: photoUrls,               // may be []
         imageKeys,                       // may be []
-        originalPrice: form.originalPrice ? `$${form.originalPrice}` : "",
+        originalPrice: form.originalPrice ? `$${form.originalPrice}` : '',
         image: photoUrls[0] ,
         category: form.category || "Uncategorized",
         subcategory: form.subcategory || "",
